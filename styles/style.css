@@ -1,0 +1,155 @@
+/* using google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  width: 100%;
+  height: 100hv;
+}
+
+/*Header section styles*/
+.navbar{
+    position: fixed;
+    padding: 20px 35px 20px 35px;
+    font-size: 15px;
+    width: 100%;
+    color: white;
+    font-weight: 500;
+    outline: none;
+    transition: .5s;
+    background-color: rgba(8, 5, 29, 0.925);
+}
+.navbar-layout{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.nav-link{
+    display: flex;
+}
+.nav-item{
+    color: white;
+    text-decoration: none;
+    margin-right: 5px;
+}
+.button-box{
+    display: flex;
+}
+.nav-item:hover{
+    color: rgb(240, 118, 4);
+}
+.btn{
+    height: auto;
+    width: auto;
+    padding: 5px 8px 5px 8px;
+    text-decoration: none;
+    margin: 0 5px 0 5px;
+    border: none;
+    border-radius: 5px;
+}
+.btn-orage{
+    color: white;
+    background-color: rgb(240, 118, 4);
+}
+.btn-white{
+    background-color: white;
+    color: rgb(240, 118, 4);
+}
+.btn-transparent{
+    background-color: transparent;
+    border: solid 1px rgb(240, 118, 4);
+    color: rgb(240, 118, 4);
+}
+.btn-orage:hover{
+    background-color: transparent;
+    color: rgb(240, 118, 4);
+    border: solid 1px rgb(240, 118, 4);
+}
+.btn-transparent:hover{
+    border: none;
+    color: white;
+    background-color: rgb(240, 118, 4);
+}
+.active{
+    color: rgb(240, 118, 4);
+}
+/*Footer section styles*/
+#scrollToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #555;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+#scrollToTopBtn:hover {
+    background-color: #333;
+}
+.flex{
+    display: flex;
+} 
+.col{
+    flex-direction: column;
+}
+.between{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+h4{
+    color: rgb(240, 118, 4);
+}
+.text-large{
+    font-size: 80px;
+}
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+/*image container*/
+.image-container{
+    height: auto;
+    width: 100%;
+    background-image: url(/images/bg-hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.img-fluid{
+    width: 500px;
+    height: auto;
+    margin-top: 50px;
+}
+.image-text{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.image-back{
+    background-color: rgba(0, 0, 0, 0.795);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 35px 20px 35px;
+}
+.footer{
+    position:absolute;
+}
+
