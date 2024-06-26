@@ -130,7 +130,6 @@ h4{
     background-image: url(/images/bg-hero.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-
 }
 .img-fluid{
     width: 500px;
@@ -145,6 +144,7 @@ h4{
     justify-content: center;
     color: white;
 }
+
 .image-back{
     background-color: rgba(0, 0, 0, 0.795);
     height: 100%;
@@ -162,6 +162,10 @@ h4{
 .text-primary{
     color: rgb(240, 118, 4);
     margin-bottom: 15px;
+}
+.text-white{
+    color: white;
+    text-decoration: none;
 }
 .box{
     height: auto;
@@ -214,6 +218,11 @@ h4{
 }
 .text-orange{
     color: rgb(240, 118, 4);
+    text-decoration: none;
+}
+.text-light{
+    color: rgb(124, 124, 124);
+    text-decoration: none;
 }
 .about{
     padding: 130px 0 10px 30px;
@@ -248,5 +257,8 @@ h4{
 .meals{
     width: 300px;
     padding: 15px;
+}
+.bold{
+    font-weight: bold;
 }
 

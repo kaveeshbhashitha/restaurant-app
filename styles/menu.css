@@ -1,0 +1,140 @@
+.menu-buttons {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+.menu-buttons button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#menu-content {
+    text-align: center;
+}
+
+.menu h2 {
+    margin-top: 0;
+}
+
+.hidden {
+    display: none;
+}
+.topic{
+    font-size: 70px;
+}
+.image-container-1{
+    height: 500px;
+    width: 100%;
+    background-image: url(/images/bg-hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.image-text-1{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.popular-menu{
+    margin-top: 40px;
+}
+.button-inside{
+    margin-left: 20px;
+    text-align: left;
+}
+.button-set{
+    border: none;
+    background-color: white;
+    margin-right: 10px;
+}
+.menu-buttons .selected {
+    border-bottom: 2px solid rgb(240, 118, 4);
+}
+
+.card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    max-width: 1250px;
+    padding: 20px;
+    gap: 20px;
+}
+.card-list .card-item {
+    background: #eeeeee;
+    padding: 15px;
+    border-radius: 8px;
+    list-style: none;
+    cursor: pointer;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: border 0.5s ease;
+    box-shadow: 0 45px 45px rgba(161, 161, 161, 0.137);
+}
+.card-list .card-item:hover {
+    background-color: rgb(255, 171, 60);
+}
+.card-list .card-item img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+    object-fit: cover;
+}
+.card-list span {
+    display: inline-block;
+    background: #F7DFF5;
+    margin-top: 32px;
+    padding: 8px 15px;
+    font-size: 0.75rem;
+    border-radius: 50px;
+    font-weight: 600;
+}
+.card-list .developer {
+    background-color: #F7DFF5; 
+    color: #B22485;
+}   
+.card-list .designer {
+    background-color: #d1e8ff;
+    color: #2968a8;
+}
+.card-list .editor {
+    background-color: #d6f8d6; 
+    color: #205c20;
+}
+.card-item h3 {
+    color: #000;
+    font-size: 1.438rem;
+    margin-top: 28px;
+    font-weight: 600;
+}
+.card-item .arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-35deg);
+    height: 40px;
+    width: 40px;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 50%;
+    margin-top: 40px;
+    transition: 0.2s ease;
+}
+.card-list .card-item:hover .arrow  {
+    background: #000;
+    color: #fff; 
+}
+@media (max-width: 1200px) {
+    .card-list .card-item {
+        padding: 15px;
+    }
+}
+@media screen and (max-width: 980px) {
+    .card-list {
+        margin: 0 auto;
+    }
+}
