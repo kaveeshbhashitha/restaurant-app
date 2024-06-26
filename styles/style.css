@@ -64,10 +64,11 @@ body{
     border: solid 1px rgb(240, 118, 4);
     color: rgb(240, 118, 4);
 }
-.btn-orage:hover{
+.btn-orange:hover{
     background-color: transparent;
     color: rgb(240, 118, 4);
     border: solid 1px rgb(240, 118, 4);
+    cursor: pointer;
 }
 .btn-transparent:hover{
     border: none;
@@ -177,7 +178,7 @@ h4{
 .box-content{
     padding: 40px 20px 40px 20px;
     line-height: 30px;
-    box-shadow: 0 45px 45px rgba(117, 117, 117, 0.137);
+    box-shadow: 0 45px 45px rgba(161, 161, 161, 0.137);
 }
 .margin{
     margin-right: 10px;
@@ -214,6 +215,38 @@ h4{
 .text-orange{
     color: rgb(240, 118, 4);
 }
-
-
+.about{
+    padding: 130px 0 10px 30px;
+}
+.exp{
+    font-size: 60px;
+}
+.exp-2{
+    font-size: 20px;
+    line-height: 30px;
+    margin-left: 15px;
+}
+.mt-2{
+    margin-top: 10px;
+}
+.mx-2{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.line-height-1{
+    line-height: 30px;
+}
+.social{
+    color: rgb(240, 118, 4);
+}
+.textbox{
+    height: auto;
+    width: 100%-2px;
+    padding: 5px;
+    border:none;
+}
+.meals{
+    width: 300px;
+    padding: 15px;
+}
 
