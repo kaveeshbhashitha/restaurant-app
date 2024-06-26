@@ -138,3 +138,13 @@
         margin: 0 auto;
     }
 }
+.btn-orange-menu{
+    color: white;
+    background-color: rgb(240, 118, 4);
+}
+.btn-orange-menu:hover{
+    color: rgb(240, 118, 4);
+    background-color: white;
+    border: solid 1ps white;
+    cursor: pointer;
+}
