@@ -1,0 +1,16 @@
+.image-container-1{
+    height: 500px;
+    width: 100%;
+    background-image: url(/images/bg-hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.image-text-1{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
