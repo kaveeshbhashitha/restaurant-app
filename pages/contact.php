@@ -57,8 +57,8 @@
             </div>
             <div class="contact-form">
                 <h3>We welcome your queries, suggestions, orders, requests as well as ideas.</h3>
-                <h1 class="text-light query">Feel free to contact us</h1>
-                <form>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7-skMS4JCt_IZHvpCUjujKsVKS6O0Jer9vw&s" alt="" style="width:70%; height:auto; margin-left: 15%;">
+                <form action="./send_email.php" method="post">
                     <div class="form-group">
                         <label for="name">Name:</label>
                         <input type="text" id="name" name="name" required class="table-selection">
@@ -75,7 +75,7 @@
                         <label for="message">Message:</label>
                         <textarea id="message" name="message" rows="5" required class="table-selection"></textarea>
                     </div>
-                    <button type="submit">Submit</button>
+                    <button type="submit" name="send">Submit</button>
                 </form>
             </div>
         </div>
@@ -102,7 +102,7 @@
                 <a class="nav-item" href="">Contact Us</a>
                 <a class="nav-item" href="">Reservation</a>
                 <a class="nav-item" href="">Privacy Policy</a>
-                <a class="nav-item" href="">Terms & Condition</a>
+                <a class="nav-item active" href="./logout.php">Logout</a>
             </div>
             <div class="line-height-1">
                 <h3 class="text-orange">Contact</h3>

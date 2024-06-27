@@ -4,7 +4,7 @@ session_start();
 
 # Check if user is already logged in, If yes then redirect him to index page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == TRUE) {
-  echo "<script>" . "window.location.href='./'" . "</script>";
+  echo "<script>" . "window.location.href='./login.php'" . "</script>";
   exit;
 }
 
@@ -110,52 +110,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               echo "<div class='alert-danger'>" . $login_err . "</div>";
             }
             ?>
-            <div class="form-wrap">
-              <h1>Log In</h1>
-              <p>Please login to continue</p>
-              <!-- form starts here -->
-              <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
-                <div class="mb-3">
-                  <label for="user_login" class="form-label">Email or username</label>
-                  <input type="text" class="form-control" name="user_login" id="user_login" value="<?= $user_login; ?>">
-                  <small class="text-danger"><?= $user_login_err; ?></small>
-                </div>
-                <div class="mb-2">
-                  <label for="password" class="form-label">Password</label>
-                  <input type="password" class="form-control" name="user_password" id="password">
-                  <small class="text-danger"><?= $user_password_err; ?></small>
-                </div>
-                <div class="mb-3">
-                  <input type="submit" class="btn form-control" name="submit" value="Log In">
-                </div>
-                <p class="mb-0">Don't have an account? <a href="./register.php" class="link">Sign Up</a></p>
-              </form>
-              <!-- form ends here -->
-            </div>
           </div>
         </div>
     </div>
-
-    
     <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
-      <h2>Login</h2>
+        <h2>Login</h2>
 
-      <div class="form-group email">
-        <label for="email">Email Address</label>
-        <input type="email" placeholder="Enter your email address" name="user_login" id="user_login" value="<?= $user_login; ?>">
-        <small class="text-danger"><?= $user_login_err; ?></small>
-      </div>
+        <div class="form-group email">
+          <label for="email">Email Address</label>
+          <input type="email" placeholder="Enter your email address" name="user_login" id="user_login" value="<?= $user_login; ?>">
+          <small class="text-danger"><?= $user_login_err; ?></small>
+        </div>
 
-      <div class="form-group password">
-        <label for="password">Password</label>
-        <input type="password" placeholder="Enter your password" name="user_password" id="password">
-        <small class="text-danger"><?= $user_password_err; ?></small>
-      </div>
+        <div class="form-group password">
+          <label for="password">Password</label>
+          <input type="password" placeholder="Enter your password" name="user_password" id="password">
+          <small class="text-danger"><?= $user_password_err; ?></small>
+        </div>
 
-      <div class="form-group submit-btn">
-        <input type="submit" name="submit" value="Sign Up">
-      </div>
+        <div class="form-group submit-btn">
+          <input type="submit" name="submit" value="Sign Up">
+        </div>
 
-    </form>
+      </form>
+
 </body>
 </html>

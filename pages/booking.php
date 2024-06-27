@@ -89,7 +89,7 @@ $result = mysqli_query($link, "SELECT * FROM tables WHERE status='notreserved'")
                 <a class="nav-item" href="">Contact Us</a>
                 <a class="nav-item" href="">Reservation</a>
                 <a class="nav-item" href="">Privacy Policy</a>
-                <a class="nav-item" href="">Terms & Condition</a>
+                <a class="nav-item active" href="./logout.php">Logout</a>
             </div>
             <div class="line-height-1">
                 <h3 class="text-orange">Contact</h3>
