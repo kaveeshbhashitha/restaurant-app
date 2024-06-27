@@ -65,7 +65,7 @@ $result = mysqli_query($link, "SELECT * FROM tables WHERE status='notreserved'")
                     $status = $row['status'];
                     $children_allowed = "Children allowed";  // Assuming this is a fixed value, otherwise retrieve from DB
 
-                    echo "<a href='../pages/addbooking.html?id=$tableId' class='seat-details'>
+                    echo "<a href='../pages/addbooking.php?id=$tableId' class='seat-details'>
                             <div class='table-box'>
                                 <img src='../icons/dinner-table.png' alt=''>
                                 <h5 class='text-orange'>Table Number: $tableId</h5>

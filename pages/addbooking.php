@@ -1,3 +1,17 @@
+<?php
+require_once("config.php");
+$id = $_GET['id'];
+
+// Select data associated with this particular id
+$result = mysqli_query($link, "SELECT * FROM tables WHERE id = $id");
+
+// Fetch the next row of a result set as an associative array
+$resultData = mysqli_fetch_assoc($result);
+
+$allow = $resultData['allow'];
+$seats = $resultData['seats'];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,6 +66,7 @@
         <div class="border-box">
             <h3 class="text-orange center">Available Tables</h3>
             <h5 class="center">-- Select your preference for enjoy meals --</h5>
+            <div class="center text-orange mt-2">Table ID: <?php echo $id ?> | Table is: <?php echo $allow ?> | Having: <?php echo $seats ?> Seats</div>
             <div class="table-data">
                 <form action="" method="post">
                     <table width="100%">
@@ -93,11 +108,11 @@
                                 <input type="number" class="table-selection">
                             </td>
                         </tr>
+                        <div class="table-button">
+                            <button type="reset" class="reset">Reset</button>
+                            <button type="submit" class="book btn-orange" onclick="alert('Fill all necessary data.')">Book</button>
+                        </div>
                     </table>
-                    <div class="table-button">
-                        <button type="reset" class="reset">Reset</button>
-                        <button type="submit" class="book btn-orange" onclick="alert('Fill all necessary data.')">Book</button>
-                    </div>
                 </form>
             </div>
         </div>
