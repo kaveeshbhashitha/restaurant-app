@@ -10,44 +10,11 @@
 require_once "./config.php";
 
 # Define variables and initialize with empty values
-$username_err = $email_err = $password_err = $address_err = $mobile_err = "";
-$username = $email = $password = $address = $mobile = "";
+$name_err = $email_err = $password_err = $address_err = $mobile_err = "";
+$name = $email = $password = $address = $mobile = "";
 
 # Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  # Validate username
-  if (empty(trim($_POST["username"]))) {
-    $username_err = "Please enter a username.";
-  } else {
-    $username = trim($_POST["username"]);
-    # Prepare a select statement
-    $sql = "SELECT id FROM users WHERE username = ?";
-
-    if ($stmt = mysqli_prepare($link, $sql)) {
-      # Bind variables to the statement as parameters
-      mysqli_stmt_bind_param($stmt, "s", $param_username);
-
-      # Set parameters
-      $param_username = $username;
-
-      # Execute the prepared statement 
-      if (mysqli_stmt_execute($stmt)) {
-        # Store result
-        mysqli_stmt_store_result($stmt);
-
-        # Check if username is already registered
-        if (mysqli_stmt_num_rows($stmt) == 1) {
-          $username_err = "This username is already registered.";
-        }
-      } else {
-        echo "<script>" . "alert('Oops! Something went wrong. Please try again later.')" . "</script>";
-      }
-
-      # Close statement 
-      mysqli_stmt_close($stmt);
-    }
-  }
-
   # Validate email 
   if (empty(trim($_POST["email"]))) {
     $email_err = "Please enter an email address";
@@ -57,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $email_err = "Please enter a valid email address.";
     } else {
       # Prepare a select statement
-      $sql = "SELECT id FROM users WHERE email = ?";
+      $sql = "SELECT id FROM user WHERE email = ?";
 
       if ($stmt = mysqli_prepare($link, $sql)) {
         # Bind variables to the statement as parameters
@@ -108,32 +75,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   # Check input errors before inserting data into database
-  if (empty($username_err) && empty($email_err) && empty($password_err)) {
-    # Prepare an insert statement
-    $sql = "INSERT INTO users(username, email, password) VALUES (?, ?, ?)";
+if (empty($name_err) && empty($email_err) && empty($password_err) && empty($address_err) && empty($mobile_err)) {
+  # Prepare an insert statement
+  $sql = "INSERT INTO user (name, email, mobile, address, password) VALUES (?, ?, ?, ?, ?)";
 
-    if ($stmt = mysqli_prepare($link, $sql)) {
-      # Bind varibales to the prepared statement as parameters
-      mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_email, $param_password);
+  if ($stmt = mysqli_prepare($link, $sql)) {
+      # Bind variables to the prepared statement as parameters
+      mysqli_stmt_bind_param($stmt, "sssss", $param_name, $param_email, $param_mobile, $param_address, $param_password);
 
       # Set parameters
-      $param_username = $username;
+      $param_name = $name;
       $param_email = $email;
+      $param_mobile = $mobile;
+      $param_address = $address;
       $param_password = password_hash($password, PASSWORD_DEFAULT);
 
       # Execute the prepared statement
       if (mysqli_stmt_execute($stmt)) {
-        echo "<script>" . "alert('Registeration completed successfully. Login to continue.');" . "</script>";
-        echo "<script>" . "window.location.href='./login.php';" . "</script>";
-        exit;
+          echo "<script>alert('Registration completed successfully. Login to continue.');</script>";
+          echo "<script>window.location.href='./login.php';</script>";
+          exit;
       } else {
-        echo "<script>" . "alert('Oops! Something went wrong. Please try again later.');" . "</script>";
+          echo "<script>alert('Oops! Something went wrong. Please try again later.');</script>";
       }
 
       # Close statement
       mysqli_stmt_close($stmt);
-    }
   }
+}
 
   # Close connection
   mysqli_close($link);
@@ -159,8 +128,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       <div class="form-group fullname">
         <label for="fullname">Full Name</label>
-        <input type="text" placeholder="Enter your full name" name="username" id="username" value="<?= $username; ?>">
-        <small class="text-danger"><?= $username_err; ?></small>
+        <input type="text" placeholder="Enter your full name" name="name" id="name" value="<?= $name; ?>">
+        <small class="text-danger"><?= $name_err; ?></small>
       </div>
 
       <div class="form-group email">

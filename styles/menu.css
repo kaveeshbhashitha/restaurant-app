@@ -28,7 +28,7 @@
 .image-container-1{
     height: 500px;
     width: 100%;
-    background-image: url(/images/bg-hero.jpg);
+    background-image: url(../images/bg-hero.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }

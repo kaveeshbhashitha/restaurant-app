@@ -18,7 +18,7 @@ $user_login = $user_password = "";
 # Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty(trim($_POST["user_login"]))) {
-    $user_login_err = "Please enter your username or an email id.";
+    $user_login_err = "Please enter your email";
   } else {
     $user_login = trim($_POST["user_login"]);
   }
@@ -32,11 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   # Validate credentials 
   if (empty($user_login_err) && empty($user_password_err)) {
     # Prepare a select statement
-    $sql = "SELECT id, username, password FROM users WHERE username = ? OR email = ?";
+    $sql = "SELECT id, name, password FROM user WHERE email = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
       # Bind variables to the statement as parameters
-      mysqli_stmt_bind_param($stmt, "ss", $param_user_login, $param_user_login);
+      mysqli_stmt_bind_param($stmt, "s", $param_user_login);
 
       # Set parameters
       $param_user_login = $user_login;
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         # Check if user exists, If yes then verify password
         if (mysqli_stmt_num_rows($stmt) == 1) {
           # Bind values in result to variables
-          mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+          mysqli_stmt_bind_result($stmt, $id, $name, $hashed_password);
 
           if (mysqli_stmt_fetch($stmt)) {
             # Check if password is correct
@@ -57,11 +57,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
               # Store data in session variables
               $_SESSION["id"] = $id;
-              $_SESSION["username"] = $username;
+              $_SESSION["name"] = $name;
               $_SESSION["loggedin"] = TRUE;
 
               # Redirect user to index page
-              echo "<script>" . "window.location.href='./home.php'" . "</script>";
+              echo "<script>" . "window.location.href='./menu.php'" . "</script>";
               exit;
             } else {
               # If password is incorrect show an error message
@@ -135,5 +135,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
         </div>
     </div>
+
+    
+    <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
+      <h2>Login</h2>
+
+      <div class="form-group email">
+        <label for="email">Email Address</label>
+        <input type="email" placeholder="Enter your email address" name="user_login" id="user_login" value="<?= $user_login; ?>">
+        <small class="text-danger"><?= $user_login_err; ?></small>
+      </div>
+
+      <div class="form-group password">
+        <label for="password">Password</label>
+        <input type="password" placeholder="Enter your password" name="user_password" id="password">
+        <small class="text-danger"><?= $user_password_err; ?></small>
+      </div>
+
+      <div class="form-group submit-btn">
+        <input type="submit" name="submit" value="Sign Up">
+      </div>
+
+    </form>
 </body>
 </html>
