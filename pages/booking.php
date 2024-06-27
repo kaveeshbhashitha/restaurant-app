@@ -1,3 +1,8 @@
+<?php
+require_once("config.php");
+$result = mysqli_query($link, "SELECT * FROM tables WHERE status='notreserved'");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,96 +57,24 @@
             <h3 class="text-orange center">Available Tables</h3>
             <h5 class="center">-- Select your preference for enjoy meals --</h5>
             <div class="between wrap">
-                <a href="../pages/addbooking.html" class="seat-details">
-                    <div class="table-box">
-                        <img src="../icons/dinner-table.png" alt="">
-                        <h5 class="text-orange">Table Number : 1</h5>
-                        <h5>Available Seats: 4</h5>
-                        <h5>Away from kitchen</h5>
-                        <h5>Children allowed</h5>
-                    </div>
-                </a>
-                <a href="" class="seat-details">
-                    <div class="table-box">
-                        <img src="../icons/dinner-table.png" alt="">
-                        <h5 class="text-orange">Table Number : 1</h5>
-                        <h5>Available Seats: 2</h5>
-                        <h5>Closer to window</h5>
-                        <h5>Children allowed</h5>
-                    </div>
-                </a>
-                <a href="" class="seat-details">
-                    <div class="table-box">
-                        <img src="../icons/dinner-table.png" alt="">
-                        <h5 class="text-orange">Table Number : 1</h5>
-                        <h5>Available Seats: 4</h5>
-                        <h5>Away from kitchen</h5>
-                        <h5>Children allowed</h5>
-                    </div>
-                </a>
-                <a href="" class="seat-details">
-                    <div class="table-box">
-                        <img src="../icons/dinner-table.png" alt="">
-                        <h5 class="text-orange">Table Number : 1</h5>
-                        <h5>Available Seats: 2</h5>
-                        <h5>Closer to window</h5>
-                        <h5>Children allowed</h5>
-                    </div>
-                </a>
-                <a href="" class="seat-details">
-                    <div class="table-box">
-                        <img src="../icons/dinner-table.png" alt="">
-                        <h5 class="text-orange">Table Number : 1</h5>
-                        <h5>Available Seats: 4</h5>
-                        <h5>Away from kitchen</h5>
-                        <h5>Children allowed</h5>
-                    </div>
-                </a>
-                <a href="" class="seat-details">
-                    <div class="table-box">
-                        <img src="../icons/dinner-table.png" alt="">
-                        <h5 class="text-orange">Table Number : 1</h5>
-                        <h5>Available Seats: 2</h5>
-                        <h5>Closer to window</h5>
-                        <h5>Children allowed</h5>
-                    </div>
-                </a>
-                <a href="" class="seat-details">
-                    <div class="table-box">
-                        <img src="../icons/dinner-table.png" alt="">
-                        <h5 class="text-orange">Table Number : 1</h5>
-                        <h5>Available Seats: 4</h5>
-                        <h5>Away from kitchen</h5>
-                        <h5>Children allowed</h5>
-                    </div>
-                </a>
-                <a href="" class="seat-details">
-                    <div class="table-box">
-                        <img src="../icons/dinner-table.png" alt="">
-                        <h5 class="text-orange">Table Number : 1</h5>
-                        <h5>Available Seats: 2</h5>
-                        <h5>Closer to window</h5>
-                        <h5>Children allowed</h5>
-                    </div>
-                </a>
-                <a href="" class="seat-details">
-                    <div class="table-box">
-                        <img src="../icons/dinner-table.png" alt="">
-                        <h5 class="text-orange">Table Number : 1</h5>
-                        <h5>Available Seats: 4</h5>
-                        <h5>Away from kitchen</h5>
-                        <h5>Children allowed</h5>
-                    </div>
-                </a>
-                <a href="" class="seat-details">
-                    <div class="table-box">
-                        <img src="../icons/dinner-table.png" alt="">
-                        <h5 class="text-orange">Table Number : 1</h5>
-                        <h5>Available Seats: 2</h5>
-                        <h5>Closer to window</h5>
-                        <h5>Children allowed</h5>
-                    </div>
-                </a>
+            <?php 
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $tableId = $row['id'];
+                    $seats = $row['seats'];
+                    $allow = $row['allow'];
+                    $status = $row['status'];
+                    $children_allowed = "Children allowed";  // Assuming this is a fixed value, otherwise retrieve from DB
+
+                    echo "<a href='../pages/addbooking.html?id=$tableId' class='seat-details'>
+                            <div class='table-box'>
+                                <img src='../icons/dinner-table.png' alt=''>
+                                <h5 class='text-orange'>Table Number: $tableId</h5>
+                                <h5>Available Seats: $seats</h5>
+                                <h5>$allow</h5>
+                            </div>
+                        </a>";
+                    }
+                ?>
             </div>
         </div>
     </div>

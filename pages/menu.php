@@ -1,3 +1,8 @@
+<?php
+require_once("dbConnection.php");
+$result = mysqli_query($mysqli, "SELECT * FROM tables WHERE status='notreserved'");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
