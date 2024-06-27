@@ -192,6 +192,9 @@ h4{
     flex-direction: row;
     flex-wrap: wrap;
 }
+.wrap{
+    flex-wrap: wrap;
+}
 .long{
     color: #5c5c5c;
 }
