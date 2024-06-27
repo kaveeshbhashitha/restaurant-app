@@ -264,4 +264,8 @@ h4{
 .bold{
     font-weight: bold;
 }
+.service-icons{
+    width: 70px;
+    height: auto;
+}
 

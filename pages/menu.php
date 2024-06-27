@@ -117,7 +117,7 @@
                                 $categoryDisplay
                                 <h3>$menuname</h3>
                                 <p>$ingredients</p>
-                                <a class='btn btn-orange-menu center mt-2' href='add_to_delivery.php?menu_id={$row['id']}'>Add To Delivery</a>
+                                <a class='btn btn-orange-menu center mt-2' href='delivery.php?menu_id={$row['id']}'>Add To Delivery</a>
                             </div>
                         </div>";
                     }
@@ -152,7 +152,7 @@
                                 $categoryDisplay
                                 <h3>$menuname</h3>
                                 <p>$ingredients</p>
-                                <a class='btn btn-orange-menu center mt-2' href='add_to_delivery.php?menu_id={$row['id']}'>Add To Delivery</a>
+                                <a class='btn btn-orange-menu center mt-2' href='delivery.php?menu_id={$row['id']}'>Add To Delivery</a>
                             </div>
                         </div>";
                     }
@@ -186,7 +186,7 @@
                                 $categoryDisplay
                                 <h3>$menuname</h3>
                                 <p>$ingredients</p>
-                                <a class='btn btn-orange-menu center mt-2' href='add_to_delivery.php?menu_id={$row['id']}'>Add To Delivery</a>
+                                <a class='btn btn-orange-menu center mt-2' href='delivery.php?menu_id={$row['id']}'>Add To Delivery</a>
                             </div>
                         </div>";
                     }
