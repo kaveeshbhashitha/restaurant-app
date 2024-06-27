@@ -32,3 +32,43 @@
     color: rgb(17, 17, 78);
     text-align: left;
 }
+.table-data{
+    padding: 20px;
+}
+.table-button{
+    float: right;
+    margin-right: 10px;
+}
+.book{
+    height: auto;
+    width: auto;
+    padding: 10px 20px 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 8px;
+    font-size: 15px;
+}
+.table-selection{
+    width: 100%;
+    height: auto;
+    padding: 8px;
+    color: rgb(255, 115, 0);
+    border: solid 0.5px orange;
+}
+td{
+    padding: 10px 15px 10px 15px;
+}
+.reset{
+    height: auto;
+    width: auto;
+    padding: 10px 20px 10px 20px;
+    border: 1px solid rgb(51, 51, 51);
+    color: rgb(51, 51, 51);
+    background-color: white;
+    border-radius: 5px;
+    margin-right: 8px;
+    font-size: 15px;
+}
+.reset:hover{
+    cursor: pointer;
+}

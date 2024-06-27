@@ -39,13 +39,6 @@
     margin-bottom: 5px;
 }
 
-.form-group input, .form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
 button {
     padding: 10px 15px;
     background-color: rgb(240, 118, 4);;
@@ -71,4 +64,11 @@ button:hover {
 }
 .media:hover{
     cursor: pointer;
+}
+.table-selection{
+    width: 100%;
+    height: auto;
+    padding: 8px;
+    color: rgb(255, 115, 0);
+    border: solid 0.5px orange;
 }
