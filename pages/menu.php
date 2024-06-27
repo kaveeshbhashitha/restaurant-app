@@ -1,6 +1,8 @@
 <?php
-require_once("dbConnection.php");
-$result = mysqli_query($mysqli, "SELECT * FROM tables WHERE status='notreserved'");
+    require_once("config.php");
+    $lunch = mysqli_query($link, "SELECT * FROM menus WHERE mode = 'lunch'");
+    $breakfast = mysqli_query($link, "SELECT * FROM menus WHERE mode = 'breakfast'");
+    $dinner = mysqli_query($link, "SELECT * FROM menus WHERE mode = 'dinner'");
 ?>
 
 <!DOCTYPE html>
@@ -86,71 +88,109 @@ $result = mysqli_query($mysqli, "SELECT * FROM tables WHERE status='notreserved'
                 </div>
             </button>
         </div>
+
         <div id="menu-content">
             <div id="breakfast" class="menu hidden">
                 <div class="card-list">
-                    <div href="#" class="card-item">
-                        <img src="../images/about-1.jpg" alt="Card Image">
-                        <span class="developer">Non-Vegan</span>
-                        <h3>A "developer" codes software and websites.</h3>
-                        <a class="btn btn-orange-menu center mt-2" href="">Add To Delivery</a>
-                    </div>
-                    <div href="#" class="card-item">
-                        <img src="../images/about-2.jpg" alt="Card Image">
-                        <span class="designer">Dairy-Product</span>
-                        <h3>A "designer" is a design expert.</h3>
-                        <a class="btn btn-orange-menu center mt-2" href="">Add To Delivery</a>
-                    </div>
-                    <div href="#" class="card-item">
-                        <img src="../images/about-3.jpg" alt="Card Image">
-                        <span class="editor">Vegan</span>
-                        <h3>An "editor" ensures content quality and accuracy.</h3>
-                        <a class="btn btn-orange-menu center mt-2" href="">Add To Delivery</a>
-                    </div>
+                <?php
+                    while ($row = mysqli_fetch_assoc($breakfast)) {
+                    
+                        $menuname = $row['menuname'];
+                        $imageurl = $row['imageurl'];
+                        $category = $row['category'];
+                        $ingredients = $row['ingredients'];
+
+                        if ($category == "Non-Vegan") {
+                            $categoryDisplay = "<span class='developer'>$category</span>";
+                        } elseif ($category == "Dairy") {
+                            $categoryDisplay = "<span class='designer'>Dairy-Product</span>";
+                        } elseif ($category == "Vegan") {
+                            $categoryDisplay = "<span class='editor'>Vegan</span>";
+                        } else {
+                            $categoryDisplay = "<span class='developer'>$category</span>";
+                        }
+
+                        echo "
+                        <div class='card-item'>
+                            <div class='menu-item'>
+                                <img src='http://localhost/restaurant-app/images/$imageurl' alt='Card Image'>
+                                $categoryDisplay
+                                <h3>$menuname</h3>
+                                <p>$ingredients</p>
+                                <a class='btn btn-orange-menu center mt-2' href='add_to_delivery.php?menu_id={$row['id']}'>Add To Delivery</a>
+                            </div>
+                        </div>";
+                    }
+                    ?>
                 </div>
             </div>
+
             <div id="lunch" class="menu hidden">
                 <div class="card-list">
-                    <div href="#" class="card-item">
-                        <img src="../images/about-1.jpg" alt="Card Image">
-                        <span class="developer">Non-Vegan</span>
-                        <h3>A "developer" codes software and websites.</h3>
-                        <a class="btn btn-orange-menu center mt-2" href="">Add To Delivery</a>
-                    </div>
-                    <div href="#" class="card-item">
-                        <img src="../images/about-2.jpg" alt="Card Image">
-                        <span class="designer">Dairy-Product</span>
-                        <h3>A "designer" is a design expert.</h3>
-                        <a class="btn btn-orange-menu center mt-2" href="">Add To Delivery</a>
-                    </div>
-                    <div href="#" class="card-item">
-                        <img src="../images/about-3.jpg" alt="Card Image">
-                        <span class="editor">Vegan</span>
-                        <h3>An "editor" ensures content quality and accuracy.</h3>
-                        <a class="btn btn-orange-menu center mt-2" href="">Add To Delivery</a>
-                    </div>
+                <?php
+                    while ($row = mysqli_fetch_assoc($lunch)) {
+                    
+                        $menuname = $row['menuname'];
+                        $imageurl = $row['imageurl'];
+                        $category = $row['category'];
+                        $ingredients = $row['ingredients'];
+
+                        if ($category == "Non-Vegan") {
+                            $categoryDisplay = "<span class='developer'>$category</span>";
+                        } elseif ($category == "Dairy") {
+                            $categoryDisplay = "<span class='designer'>Dairy-Product</span>";
+                        } elseif ($category == "Vegan") {
+                            $categoryDisplay = "<span class='editor'>Vegan</span>";
+                        } else {
+                            $categoryDisplay = "<span class='developer'>$category</span>";
+                        }
+
+                        echo "
+                        <div class='card-item'>
+                            <div class='menu-item'>
+                                <img src='http://localhost/restaurant-app/images/$imageurl' alt='Card Image'>
+                                $categoryDisplay
+                                <h3>$menuname</h3>
+                                <p>$ingredients</p>
+                                <a class='btn btn-orange-menu center mt-2' href='add_to_delivery.php?menu_id={$row['id']}'>Add To Delivery</a>
+                            </div>
+                        </div>";
+                    }
+                    ?>
                 </div>
             </div>
             <div id="dinner" class="menu">
                 <div class="card-list">
-                    <div href="#" class="card-item">
-                        <img src="../images/about-4.jpg" alt="Card Image">
-                        <span class="developer">Non-Vegan</span>
-                        <h3>A "developer" codes software and websites.</h3>
-                        <a class="btn btn-orange-menu center mt-2" href="">Add To Delivery</a>
-                    </div>
-                    <div href="#" class="card-item">
-                        <img src="../images/about-2.jpg" alt="Card Image">
-                        <span class="designer">Dairy-Product</span>
-                        <h3>A "designer" is a design expert.</h3>
-                        <a class="btn btn-orange-menu center mt-2" href="">Add To Delivery</a>
-                    </div>
-                    <div href="#" class="card-item">
-                        <img src="../images/about-3.jpg" alt="Card Image">
-                        <span class="editor">Vegan</span>
-                        <h3>An "editor" ensures content quality and accuracy.</h3>
-                        <a class="btn btn-orange-menu center mt-2" href="">Add To Delivery</a>
-                    </div>
+                <?php
+                    while ($row = mysqli_fetch_assoc($dinner)) {
+                    
+                        $menuname = $row['menuname'];
+                        $imageurl = $row['imageurl'];
+                        $category = $row['category'];
+                        $ingredients = $row['ingredients'];
+
+                        if ($category == "Non-Vegan") {
+                            $categoryDisplay = "<span class='developer'>$category</span>";
+                        } elseif ($category == "Dairy") {
+                            $categoryDisplay = "<span class='designer'>Dairy-Product</span>";
+                        } elseif ($category == "Vegan") {
+                            $categoryDisplay = "<span class='editor'>Vegan</span>";
+                        } else {
+                            $categoryDisplay = "<span class='developer'>$category</span>";
+                        }
+
+                        echo "
+                        <div class='card-item'>
+                            <div class='menu-item'>
+                                <img src='http://localhost/restaurant-app/images/$imageurl' alt='Card Image'>
+                                $categoryDisplay
+                                <h3>$menuname</h3>
+                                <p>$ingredients</p>
+                                <a class='btn btn-orange-menu center mt-2' href='add_to_delivery.php?menu_id={$row['id']}'>Add To Delivery</a>
+                            </div>
+                        </div>";
+                    }
+                    ?>
                 </div>
             </div>
         </div>
