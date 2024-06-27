@@ -34,5 +34,3 @@ function showMenu(menu) {
     // Add 'selected' class to the clicked button
     document.getElementById('btn-' + menu).classList.add('selected');
 }
-
-
