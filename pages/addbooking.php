@@ -1,14 +1,85 @@
 <?php
+
 require_once("config.php");
+require_once("sendmail.php");
+
+// data retrieval and show top of the form
 $id = $_GET['id'];
-
 $result = mysqli_query($link, "SELECT * FROM tables WHERE id = $id");
+if (!$result) {
+    die("Error in SQL query: " . mysqli_error($link));
+}
 $resultData = mysqli_fetch_assoc($result);
-
 $allow = $resultData['allow'];
 $seats = $resultData['seats'];
+$message1 = $message2 = $message3 = $message4 = $message5 = $message6 = $message7 = $message8 = $message = "";
 
+// insert data into db
+if (isset($_POST['submit'])) {
+    // Escape special characters in string for use in SQL statement    
+    $firstname = mysqli_real_escape_string($link, $_POST['fname']);
+    $lastname = mysqli_real_escape_string($link, $_POST['lname']);
+    $email = mysqli_real_escape_string($link, $_POST['email']);
+    $mobile = mysqli_real_escape_string($link, $_POST['mobile']);
+    $date = mysqli_real_escape_string($link, $_POST['date']);
+    $atime = mysqli_real_escape_string($link, $_POST['atime']);
+    $ltime = mysqli_real_escape_string($link, $_POST['ltime']);
+    $numofcus = mysqli_real_escape_string($link, $_POST['numofperson']);
+        
+    // Check for empty fields
+    if (empty($firstname) || empty($lastname) || empty($email) || empty($mobile) || empty($date) || empty($atime) || empty($ltime) || empty($numofcus)) {
+        if (empty($firstname)) {
+            $message1 = "<font color='red'>Provide Your First Name</font><br/>";
+        }
+        
+        if (empty($lastname)) {
+            $message2 = "<font color='red'>Provide Your Last Name</font><br/>";
+        }
+        
+        if (empty($email)) {
+            $message3 = "<font color='red'>Provide Your Email</font><br/>";
+        }
+
+        if (empty($mobile)) {
+            $message4 = "<font color='red'>Provide Your Mobile</font><br/>";
+        }
+        
+        if (empty($date)) {
+            $message5 = "<font color='red'>Provide Date You want to Reserve Table</font><br/>";
+        }
+        
+        if (empty($atime)) {
+            $message6 = "<font color='red'>Provide Time You Come to Restaurant</font><br/>";
+        }
+
+        if (empty($ltime)) {
+            $message7 = "<font color='red'>Provide Time You Leave form the Restaurante</font><br/>";
+        }
+        
+        if (empty($numofcus)) {
+            $message8 = "<font color='red'>Provide Number of Members Come with You</font><br/>";
+        }
+    } else { 
+        // If all the fields are filled (not empty) 
+
+        $insertQuery = "INSERT INTO booking (`tableid`, `tcondition`, `seats`, `firstname`, `lastname`, `email`, `mobile`, `date`, `atime`, `ltime`, `numofcus`) VALUES ('$id', '$allow', '$seats', '$firstname', '$lastname', '$email', '$mobile', '$date', '$atime', '$ltime', '$numofcus')";
+        $updateQuery = "UPDATE tables SET status = 'reserved' WHERE id = $id";
+
+        $insertResult = mysqli_query($link, $insertQuery);
+        $updateResult = mysqli_query($link, $updateQuery);
+
+        if ($insertResult && $updateResult) {
+            // Send confirmation email
+            sendConfirmationEmail($email, $firstname, $lastname, $date, $atime, $ltime, $numofcus);
+            $message = "<div class='alert alert-success'>Booking Success. We welcome you on $date in $atime</div>";
+        } else {
+            // Display error message
+            $message = "<div class='alert alert-danger'>Booking Success. We welcome you on $date in $atime</div>";
+        }
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,46 +139,59 @@ $seats = $resultData['seats'];
                 <form action="" method="post">
                     <table width="100%">
                         <tr>
+                            <td colspan="4">
+                                <div><?php echo $message ?></div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td colspan="2">
                                 <label for="">First Name</label>
-                                <input type="text" placeholder="Freank" class="table-selection">
+                                <input type="text" name="fname" placeholder="Freank" class="table-selection">
+                                <small><?php echo $message1 ?></small>
                             </td>
                             <td  colspan="2">
                                 <label for="">Last Name</label>
-                                <input type="text" placeholder="Ferdinand" class="table-selection">
+                                <input type="text" name="lname" placeholder="Ferdinand" class="table-selection">
+                                <small><?php echo $message2 ?></small>
                             </td>
                         </tr>
                         <tr>
                             <td  colspan="2">
                                 <label for="">Email</label>
-                                <input type="email" placeholder="freank@email.com" class="table-selection">
+                                <input type="email" name="email" placeholder="freank@email.com" class="table-selection">
+                                <small><?php echo $message3 ?></small>
                             </td>
                             <td  colspan="2">
                                 <label for="">Mobile</label>
-                                <input type="text" placeholder="077342209" class="table-selection">
+                                <input type="text" name="mobile" placeholder="077342209" class="table-selection">
+                                <small><?php echo $message4 ?></small>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label for="">Date</label>
-                                <input type="date" class="table-selection">
+                                <input type="date" name="date" class="table-selection">
+                                <small><?php echo $message5 ?></small>
                             </td>
                             <td>
                                 <label for="">Time Arrival</label>
-                                <input type="time" class="table-selection">
+                                <input type="time" name="atime" class="table-selection">
+                                <small><?php echo $message6 ?></small>
                             </td>
                             <td>
                                 <label for="">Time Leaving</label>
-                                <input type="time" class="table-selection">
+                                <input type="time" name="ltime" class="table-selection">
+                                <small><?php echo $message7 ?></small>
                             </td>
                             <td>
                                 <label for="">Persons</label>
-                                <input type="number" class="table-selection">
+                                <input type="number" name="numofperson" class="table-selection">
+                                <small><?php echo $message8 ?></small>
                             </td>
                         </tr>
                         <div class="table-button">
                             <button type="reset" class="reset">Reset</button>
-                            <button type="submit" class="book btn-orange" onclick="alert('Fill all necessary data.')">Book</button>
+                            <button type="submit" name="submit" class="book btn-orange">Book</button>
                         </div>
                     </table>
                 </form>
