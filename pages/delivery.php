@@ -29,6 +29,7 @@
     $cusname = $cusData['name'];
     $cusemail = $cusData['email'];
     $cusmobile = $cusData['mobile'];
+    $cusaddress = $cusData['address'];
 
 ?>
 
@@ -120,6 +121,10 @@
               <div class="input-group">
                   <label for="email">Customer Email</label>
                   <input type="email" name="email" id="email" class="text-orange" value='<?php echo htmlspecialchars($cusemail); ?>'>
+              </div>
+              <div class="input-group">
+                  <label for="email">Delivery Address</label>
+                  <input type="text" name="address" id="email" class="text-orange" value='<?php echo htmlspecialchars($cusaddress); ?>'>
               </div>
               <div class="input-group">
                   <label for="email">Number of potions</label>
