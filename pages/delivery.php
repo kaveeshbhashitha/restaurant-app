@@ -10,6 +10,7 @@
 
     $email = htmlspecialchars($_SESSION["email"]);
     $id = $_GET['id'];
+    $imageurl = "";
 
     $id = intval($id);
     $email = mysqli_real_escape_string($link, $email);
@@ -25,11 +26,13 @@
     $resultData = mysqli_fetch_assoc($result);
     $cusData = mysqli_fetch_assoc($customer);
     $menuname = $resultData['menuname'];
+    $menuimage = $resultData['imageurl'];
     $price = $resultData['price'];
     $cusname = $cusData['name'];
     $cusemail = $cusData['email'];
     $cusmobile = $cusData['mobile'];
     $cusaddress = $cusData['address'];
+    $imageurl = "http://localhost/restaurant-app/images/$menuimage";
 
 ?>
 
@@ -85,53 +88,68 @@
 
     <div class="message-container">
         <div class="center-content">
-          <?php
-              // Include the database connection file
-            //   require_once("connect.php");
+            <h2 class="topic">Place your delivery and make payment</h2>
+            <h5 class="topic mot">We love deliver your order to your door steps</h5>
 
-            //   if (isset($_POST['submit'])) {
-            //     // Escape special characters in string for use in SQL statement	
-            //     $fname = mysqli_real_escape_string($conn, $_POST['fname']);
-            //     $lname = mysqli_real_escape_string($conn, $_POST['lname']);
-            //     $email = mysqli_real_escape_string($conn, $_POST['email']);
-            //     $subject = mysqli_real_escape_string($conn, $_POST['subject']);
-            //     $message = mysqli_real_escape_string($conn, $_POST['message']);
-                  
-            //     if (empty($fname) || empty($lname) || empty($email) || empty($subject) || empty($message)) {
-            //       echo "<div class='errormessage'>Fill all fields</div>";
-            //     } else { 
-            //       $result = mysqli_query($conn, "INSERT INTO contact (`fname`, `lname`, `email`, `subject`, `message`) VALUES ('$fname', '$lname', '$email', '$subject', '$message')");
-                  
-            //       echo "<div class='successmessage'>Data inserted successfully</div>";
-            //     }
-            //   }
-          ?>
-          <h2 class="topic">Place your delivery and make payment</h2>
-          <h5 class="topic mot">We love deliver your order to your door steps</h5>
-          <div class="text-orange mot between"><div>Meal Id: <?php echo $id ?></div>, <div>Menu Name: <?php echo $menuname ?></div>, <div>Price: <?php echo $price ?> (Per One)</div></div>
-          <form class="form" method="post" name="add">
-              <div class="input-group">
-                <label for="email">Customer Name</label>
-                <input type="text" name="fname" id="email" class="text-orange" value='<?php echo htmlspecialchars($cusname); ?>'>
+            <div class="code-center">
+            <?php
+                if (isset($_POST['submit'])) {
+                    // Escape special characters in string for use in SQL statement	
+                    $numofcus = mysqli_real_escape_string($link, $_POST['numofcus']);
+                    
+                    if (empty($numofcus)) {
+                        echo "<div class='errormessage'>Please provide number of potions you need</div>";
+                    } else { 
+                        // Perform the database insertion
+                        $result = mysqli_query($link, "INSERT INTO foodorder (`menuid`, `menuname`, `price`, `name`, `email`, `address`, `mobile`, `numofdish`, `image`) 
+                                                       VALUES ('$id', '$menuname', '$price', '$cusname', '$cusemail', '$cusaddress', '$cusmobile', '$numofcus', '$imageurl')");
+                        
+                        if ($result) {
+                            $insert_id = mysqli_insert_id($link);
+                            header("Location: stripe/index.php?id=$insert_id");
+                            exit();
+                        } else {
+                            echo "<div class='errormessage'>Error inserting data: " . mysqli_error($link) . "</div>";
+                        }
+                    }
+                }
+            ?>
             </div>
-            <div class="input-group">
-                <label for="email">Mobile</label>
-                <input type="text" name="lname" id="email" class="text-orange" value='0<?php echo htmlspecialchars($cusmobile); ?>'>
+
+
+            <div class="delivery-box">
+                <div class="mot order-details">
+                    <div><img src="http://localhost/restaurant-app/images/<?php echo htmlspecialchars($menuimage); ?>" alt="Card Image"></div>
+                    <div class="mt-2"><span class="text-orange">Meal Id : </span> <?php echo $id ?></div>
+                    <div><span class="text-orange">Menu Name : </span><?php echo $menuname ?></div>
+                    <div><span class="text-orange">Price : </span><?php echo $price ?> (Per One)</div>
+                </div>
+                <div>
+                    <form class="form" method="post" name="add">
+                        <div class="input-group">
+                            <label for="email">Customer Name</label>
+                            <input type="text" name="fname" id="email" class="text-orange" value='<?php echo htmlspecialchars($cusname); ?>'>
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Mobile</label>
+                            <input type="text" name="lname" id="email" class="text-orange" value='0<?php echo htmlspecialchars($cusmobile); ?>'>
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Customer Email</label>
+                            <input type="email" name="email" id="email" class="text-orange" value='<?php echo htmlspecialchars($cusemail); ?>'>
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Delivery Address</label>
+                            <input type="text" name="address" id="email" class="text-orange" value='<?php echo htmlspecialchars($cusaddress); ?>'>
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Number of potions</label>
+                            <input type="number" name="numofcus" id="email" placeholder="Enter Number of potions required" >
+                        </div>
+                        <button type="submit" name="submit" class="submit-button">Order Now</button>
+                    </form>
+                </div>
             </div>
-              <div class="input-group">
-                  <label for="email">Customer Email</label>
-                  <input type="email" name="email" id="email" class="text-orange" value='<?php echo htmlspecialchars($cusemail); ?>'>
-              </div>
-              <div class="input-group">
-                  <label for="email">Delivery Address</label>
-                  <input type="text" name="address" id="email" class="text-orange" value='<?php echo htmlspecialchars($cusaddress); ?>'>
-              </div>
-              <div class="input-group">
-                  <label for="email">Number of potions</label>
-                  <input type="number" name="subject" id="email" placeholder="Enter Number of potions required" >
-              </div>
-              <button type="submit" name="submit" class="submit-button">Order Now</button>
-          </form>
         </div>
     </div>
     
@@ -186,3 +204,4 @@
 <script src="../scripts/script.js"></script>
 </body>
 </html>
+

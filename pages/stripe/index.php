@@ -1,37 +1,90 @@
 <?php
-// Include configuration file  
-require_once 'config.php'; 
-include 'dbConnect.php';
+    require_once 'config.php'; 
+    include 'dbConnect.php';
+
+    session_start();
+
+    if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== TRUE) {
+        echo "<script>window.location.href='./../login.php';</script>";
+        exit;
+    }
+    $id = $_GET['id'];
+    $total = 1;
+    $result = mysqli_query($db_conn, "SELECT * FROM foodorder WHERE id = $id");
+    $resultData = mysqli_fetch_assoc($result);
+
+    $menuname = $resultData['menuname'];
+    $mealid = $resultData['menuid'];
+    $menuimage = $resultData['image'];
+    $price = $resultData['price'];
+    $cusname = $resultData['name'];
+    $numofdish = $resultData['numofdish'];
+    $total =  $price * $numofdish;
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-<title> Stripe Checkout in PHP by codeat21.com</title>
-<meta charset="utf-8">
-<!-- Stylesheet file -->
-<link href="css/style.css" rel="stylesheet">
-<!-- Stripe JavaScript library -->
-<script src="https://js.stripe.com/v3/"></script>
+    <title> Stripe Checkout in PHP by codeat21.com</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="../../icons/restaurant.png" type="image/x-icon">
+    <!-- Stylesheet file -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="../../styles/style.css" rel="stylesheet">
+    <link href="../../styles/delivery.css" rel="stylesheet">
+    <!-- Stripe JavaScript library -->
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body class="App">
-	<h1>How to Integrate Stripe Payment Gateway in PHP</h1>
-	<div class="wrapper">
-        <!-- Display errors returned by checkout session -->
-		<div id="paymentResponse"></div>
-		<?php 
-			$results = mysqli_query($db_conn,"SELECT * FROM products where status=1");
-			$row = mysqli_fetch_array($results,MYSQLI_ASSOC);
-		?>
-			<div class="col__box">
-			  <h5><?php echo $row['name']; ?></h5>
-				<h6>Price: <span> $<?php echo $row['price']; ?> </span> </h6>
-			
-				<!-- Buy button -->
-				<div id="buynow">
-					<button class="btn__default" id="payButton"> Buy Now </button>
-				</div>
-			</div>
-	</div>		
+
+    <div class="message-container">
+        <div class="center-content top-content">
+            <h2 class="topic">Place your delivery and make payment</h2>
+            <h5 class="topic mot">We love deliver your order to your door steps</h5>
+
+            <div class="code-center">
+            </div>
+
+
+            <div class="delivery-box">
+                <div class="mot order-details">
+                    <div><img src="<?php echo htmlspecialchars($menuimage); ?>" alt="Card Image"></div>
+                </div>
+                <div>
+                    <form class="form" method="post" name="add">
+                        <div class="input-group">
+                            <label for="email">Order ID</label>
+                            <input type="text" class="text-orange" value='Order id is: <?php echo $id ?>'>
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Menu ID</label>
+                            <input type="text" class="text-orange" value='Selected menu id is: <?php echo $mealid ?>'>
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Menu name</label>
+                            <input type="text" class="text-orange" value='Your selection is: <?php echo $menuname ?>'>
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Number of potions</label>
+                            <input type="text" class="text-orange" value='Potion size is: <?php echo $numofdish ?>'>
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Customer name</label>
+                            <input type="text" class="text-orange" value='<?php echo $cusname ?>'>
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Total price</label>
+                            <input type="text" class="text-orange" value='Rs.<?php echo $total ?>'>
+                        </div>
+                        <div id="buynow">
+                            <button class="btn__default submit-button" id="payButton"> Pay Now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>	
 <script>
 var buyBtn = document.getElementById('payButton');
 var responseContainer = document.getElementById('paymentResponse');    
@@ -44,10 +97,10 @@ var createCheckoutSession = function (stripe) {
         },
         body: JSON.stringify({
             checkoutSession: 1,
-			Name:"<?php echo $row['name']; ?>",
-			ID:"<?php echo $row['id']; ?>",
-			Price:"<?php echo $row['price']; ?>",
-			Currency:"<?php echo $row['currency']; ?>",
+			Name:"<?php echo $menuname; ?>",
+			ID:"<?php echo $id; ?>",
+			Price:"<?php echo $total; ?>.00",
+			Currency:"LKR",
         }),
     }).then(function (result) {
         return result.json();

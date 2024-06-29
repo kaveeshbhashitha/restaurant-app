@@ -119,3 +119,13 @@ textarea:focus {
     display: flex;
     justify-content: space-between;
 }
+.delivery-box{
+    display: flex;
+}
+.order-details{
+    margin: 50px 10px 0 10px;
+}
+.code-center{
+    display: flex;
+    justify-content: center;
+}
