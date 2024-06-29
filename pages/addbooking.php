@@ -62,7 +62,7 @@ if (isset($_POST['submit'])) {
     } else { 
         // If all the fields are filled (not empty) 
 
-        $insertQuery = "INSERT INTO booking (`tableid`, `tcondition`, `seats`, `firstname`, `lastname`, `email`, `mobile`, `date`, `atime`, `ltime`, `numofcus`) VALUES ('$id', '$allow', '$seats', '$firstname', '$lastname', '$email', '$mobile', '$date', '$atime', '$ltime', '$numofcus')";
+        $insertQuery = "INSERT INTO booking (`tableid`, `tcondition`, `seats`, `email`, `mobile`, `date`, `atime`, `ltime`, `numofcus`, `fname`, `lname`) VALUES ('$id', '$allow', '$seats', '$email', '$mobile', '$date', '$atime', '$ltime', '$numofcus', '$firstname', '$lastname')";
         $updateQuery = "UPDATE tables SET status = 'reserved' WHERE id = $id";
 
         $insertResult = mysqli_query($link, $insertQuery);

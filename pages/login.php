@@ -4,7 +4,7 @@ session_start();
 
 # Check if user is already logged in, If yes then redirect him to index page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == TRUE) {
-  echo "<script>" . "window.location.href='./login.php'" . "</script>";
+  echo "<script>" . "window.location.href='./menu.php'" . "</script>";
   exit;
 }
 
@@ -106,17 +106,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <div class="login-box">
           <div class="boxsize">
-            <?php
-            if (!empty($login_err)) {
-              echo "<div class='alert-danger'>" . $login_err . "</div>";
-            }
-            ?>
+            
           </div>
         </div>
     </div>
     <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
         <h2>Login</h2>
-
+          <?php
+            if (!empty($login_err)) {
+              echo "<div style='color:red;'>" . $login_err . "</div>";
+            }
+          ?>
         <div class="form-group email">
           <label for="email">Email Address</label>
           <input type="email" placeholder="Enter your email address" name="user_login" id="user_login" value="<?= $user_login; ?>">

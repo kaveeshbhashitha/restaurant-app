@@ -23,15 +23,15 @@ $result = mysqli_query($link, "SELECT * FROM tables WHERE status='notreserved'")
             </a>
             <div class="nav-link">
                 <div>
-                    <a href="../index.html" class="nav-item">Home</a>
-                    <a href="delivery.html" class="nav-item">Delivery</a>
-                    <a href="menu.html" class="nav-item">Menu</a>
-                    <a href="contact.html" class="nav-item">Contact</a>
+                    <a href="../index.php" class="nav-item">Home</a>
+                    <a href="delivery.php" class="nav-item">Delivery</a>
+                    <a href="menu.php" class="nav-item">Menu</a>
+                    <a href="contact.php" class="nav-item">Contact</a>
                 </div>
             </div>
             <div class="button-box">
-                <a href="booking.html" class="btn btn-orange">Book a Table</a>
-                <a href="" class="btn btn-transparent">Sign-in</a>
+                <a href="booking.php" class="btn btn-orange">Book a Table</a>
+                <a href="login.php" class="btn btn-transparent">Sign-in</a>
             </div>
         </nav>
     </div>
@@ -85,10 +85,8 @@ $result = mysqli_query($link, "SELECT * FROM tables WHERE status='notreserved'")
         <div class="between">
             <div class="flex col line-height-1">
                 <h3 class="text-orange">Company</h3>
-                <a class="nav-item" href="">About Us</a>
-                <a class="nav-item" href="">Contact Us</a>
-                <a class="nav-item" href="">Reservation</a>
-                <a class="nav-item" href="">Privacy Policy</a>
+                <a class="nav-item" href="contact.php">Contact Us</a>
+                <a class="nav-item" href="login.php">Reservation</a>
                 <a class="nav-item active" href="./logout.php">Logout</a>
             </div>
             <div class="line-height-1">
@@ -131,17 +129,3 @@ $result = mysqli_query($link, "SELECT * FROM tables WHERE status='notreserved'")
 <script src="../scripts/script.js"></script>
 </body>
 </html>
-
-
-<!-- <table width="100%">
-    <tr>
-        <td>
-            <label for="">Your Name</label>
-            <input type="text" placeholder="Freank Ferdinand">
-        </td>
-        <td>
-            <label for="">Your Name</label>
-            <input type="text" placeholder="Freank Ferdinand">
-        </td>
-    </tr>
-</table> -->

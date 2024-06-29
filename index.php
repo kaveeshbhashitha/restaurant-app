@@ -16,7 +16,7 @@
             </a>
             <div class="nav-link">
                 <div>
-                    <a href="index.html" class="nav-item active">Home</a>
+                    <a href="index.php" class="nav-item active">Home</a>
                     <a href="pages/delivery.php" class="nav-item">Delivery</a>
                     <a href="pages/menu.php" class="nav-item">Menu</a>
                     <a href="pages/contact.php" class="nav-item">Contact</a>
@@ -203,10 +203,8 @@
         <div class="between">
             <div class="flex col line-height-1">
                 <h3 class="text-orange">Company</h3>
-                <a class="nav-item" href="">About Us</a>
-                <a class="nav-item" href="">Contact Us</a>
-                <a class="nav-item" href="">Reservation</a>
-                <a class="nav-item" href="">Privacy Policy</a>
+                <a class="nav-item" href="pages/contact.php">Contact Us</a>
+                <a class="nav-item" href="pages/booking.php">Reservation</a>
                 <a class="nav-item active" href="./pages/logout.php">Logout</a>
             </div>
             <div class="line-height-1">

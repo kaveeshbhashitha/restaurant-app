@@ -65,9 +65,9 @@ function sendConfirmationEmail($email, $firstname, $lastname, $date, $atime, $lt
                                                     <table cellspacing="0" cellpadding="0" style="margin: auto;">
                                                         <tr>
                                                             <td align="center" style="background-color: #345C72; padding: 10px 20px; border-radius: 5px; margin-bottom:10px;">
-                                                                <a href='. $email .' target="_blank" style="color: #ffffff; text-decoration: none; font-weight: bold;">Email of Sender</a>
+                                                                <a href='. $email .' target="_blank" style="color: #ffffff; text-decoration: none; font-weight: bold;">Contact Us</a>
                                                             </td>
-                                                            <br>
+                                                            <br><br>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -81,7 +81,7 @@ function sendConfirmationEmail($email, $firstname, $lastname, $date, $atime, $lt
                                             -->
                                             <!-- Footer -->
                                             <tr>
-                                                <td class="footer" style="background-color: #333333; padding: 40px; text-align: center; color: white; font-size: 14px;">
+                                                <td class="footer" style="background-color: #333333; padding: 40px; text-align: center; color: white; font-size: 14px; margin-top:20px;">
                                                 Copyright &copy; 2024 | ABC Restaurant
                                                 </td>
                                             </tr>
