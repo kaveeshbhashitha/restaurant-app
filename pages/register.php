@@ -1,11 +1,7 @@
 <?php
-// session_start();
+# Initialize session
+session_start();
 
-// # If user is not logged in then redirect him to login page
-// if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== TRUE) {
-//   echo "<script>" . "window.location.href='./login.php';" . "</script>";
-//   exit;
-// }
 # Include connection
 require_once "./config.php";
 
@@ -15,53 +11,53 @@ $name = $email = $password = $address = $mobile = "";
 
 # Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  # Validate email 
+
+  # Validate and sanitize email
   if (empty(trim($_POST["email"]))) {
-    $email_err = "Please enter an email address";
+    $email_err = "Please enter an email address.";
   } else {
     $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       $email_err = "Please enter a valid email address.";
     } else {
-      # Prepare a select statement
+      # Check if email is already registered
       $sql = "SELECT id FROM user WHERE email = ?";
-
       if ($stmt = mysqli_prepare($link, $sql)) {
-        # Bind variables to the statement as parameters
-        mysqli_stmt_bind_param($stmt, "s", $param_email);
-
-        # Set parameters
-        $param_email = $email;
-
-        # Execute the prepared statement 
+        mysqli_stmt_bind_param($stmt, "s", $email);
         if (mysqli_stmt_execute($stmt)) {
-          # Store result
           mysqli_stmt_store_result($stmt);
-
-          # Check if email is already registered
           if (mysqli_stmt_num_rows($stmt) == 1) {
             $email_err = "This email is already registered.";
           }
         } else {
-          echo "<script>" . "alert('Oops! Something went wrong. Please try again later.');" . "</script>";
+          echo "<script>alert('Oops! Something went wrong. Please try again later.');</script>";
         }
-
-        # Close statement
         mysqli_stmt_close($stmt);
       }
     }
   }
 
-  # Validate address
-  if (empty(trim($_POST["address"]))) {
-    $address_err = "Please enter a Address.";
+  # Validate and sanitize name
+  if (empty(trim($_POST["name"]))) {
+    $name_err = "Please enter a name.";
+  } else {
+    $name = htmlspecialchars(trim($_POST["name"]));
   }
 
-  # Validate mobile
+  # Validate and sanitize address
+  if (empty(trim($_POST["address"]))) {
+    $address_err = "Please enter an address.";
+  } else {
+    $address = htmlspecialchars(trim($_POST["address"]));
+  }
+
+  # Validate and sanitize mobile
   if (empty(trim($_POST["mobile"]))) {
-    $mobile_err = "Please enter a Mobile Number.";
-  }elseif(strlen(trim($_POST["mobile"])) != 10){
-    $mobile_err = "Please enter a valid Mobile Number.";
+    $mobile_err = "Please enter a mobile number.";
+  } elseif (strlen(trim($_POST["mobile"])) != 10) {
+    $mobile_err = "Please enter a valid mobile number.";
+  } else {
+    $mobile = htmlspecialchars(trim($_POST["mobile"]));
   }
 
   # Validate password
@@ -70,44 +66,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $password = trim($_POST["password"]);
     if (strlen($password) < 8) {
-      $password_err = "Password must contain at least 8 or more characters.";
+      $password_err = "Password must contain at least 8 characters.";
     }
   }
 
-  # Check input errors before inserting data into database
-if (empty($name_err) && empty($email_err) && empty($password_err) && empty($address_err) && empty($mobile_err)) {
-  # Prepare an insert statement
-  $sql = "INSERT INTO user (name, email, mobile, address, password) VALUES (?, ?, ?, ?, ?)";
-
-  if ($stmt = mysqli_prepare($link, $sql)) {
-      # Bind variables to the prepared statement as parameters
-      mysqli_stmt_bind_param($stmt, "sssss", $param_name, $param_email, $param_mobile, $param_address, $param_password);
-
-      # Set parameters
-      $param_name = $name;
-      $param_email = $email;
-      $param_mobile = $mobile;
-      $param_address = $address;
+  # Check input errors before inserting data into the database
+  if (empty($name_err) && empty($email_err) && empty($password_err) && empty($address_err) && empty($mobile_err)) {
+    $sql = "INSERT INTO user (name, email, mobile, address, password) VALUES (?, ?, ?, ?, ?)";
+    if ($stmt = mysqli_prepare($link, $sql)) {
       $param_password = password_hash($password, PASSWORD_DEFAULT);
-
-      # Execute the prepared statement
+      mysqli_stmt_bind_param($stmt, "sssss", $name, $email, $mobile, $address, $param_password);
       if (mysqli_stmt_execute($stmt)) {
-          echo "<script>alert('Registration completed successfully. Login to continue.');</script>";
-          echo "<script>window.location.href='./login.php';</script>";
-          exit;
+        echo "<script>alert('Registration completed successfully. Login to continue.');</script>";
+        echo "<script>window.location.href='./login.php';</script>";
+        exit;
       } else {
-          echo "<script>alert('Oops! Something went wrong. Please try again later.');</script>";
+        echo "<script>alert('Oops! Something went wrong. Please try again later.');</script>";
       }
-
-      # Close statement
       mysqli_stmt_close($stmt);
+    }
   }
-}
 
   # Close connection
   mysqli_close($link);
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -158,6 +142,9 @@ if (empty($name_err) && empty($email_err) && empty($password_err) && empty($addr
 
       <div class="form-group submit-btn">
         <input type="submit" name="submit" value="Sign Up">
+      </div>
+      <div class="mt-2" style="text-align:center;">
+          Already have an account<a href="./login.php" style="margin-left:5px;">Sign In</a>
       </div>
 
     </form>

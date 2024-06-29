@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   # Validate credentials 
   if (empty($user_login_err) && empty($user_password_err)) {
     # Prepare a select statement
-    $sql = "SELECT id, name, password FROM user WHERE email = ?";
+    $sql = "SELECT id, name, email, password FROM user WHERE email = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
       # Bind variables to the statement as parameters
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         # Check if user exists, If yes then verify password
         if (mysqli_stmt_num_rows($stmt) == 1) {
           # Bind values in result to variables
-          mysqli_stmt_bind_result($stmt, $id, $name, $hashed_password);
+          mysqli_stmt_bind_result($stmt, $id, $name, $email, $hashed_password);
 
           if (mysqli_stmt_fetch($stmt)) {
             # Check if password is correct
@@ -58,6 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               # Store data in session variables
               $_SESSION["id"] = $id;
               $_SESSION["name"] = $name;
+              $_SESSION["email"] = $email;
               $_SESSION["loggedin"] = TRUE;
 
               # Redirect user to index page
@@ -130,6 +131,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="form-group submit-btn">
           <input type="submit" name="submit" value="Sign Up">
+        </div>
+        <div class="mt-2" style="text-align:center;">
+          Don't have an account<a href="./register.php" style="margin-left:5px;">Sign Up</a>
         </div>
 
       </form>

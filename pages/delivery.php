@@ -1,14 +1,37 @@
 <?php
-# Initialize session
-session_start();
+    # Initialize session
+    session_start();
+    require_once("config.php");
 
-# Check if user is already logged in, If yes then redirect him to index page
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== TRUE) {
-    echo "<script>" . "window.location.href='./login.php';" . "</script>";
-    exit;
-}
+    if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== TRUE) {
+        echo "<script>window.location.href='./login.php';</script>";
+        exit;
+    }
+
+    $email = htmlspecialchars($_SESSION["email"]);
+    $id = $_GET['id'];
+
+    $id = intval($id);
+    $email = mysqli_real_escape_string($link, $email);
+
+    # Corrected SQL queries
+    $result = mysqli_query($link, "SELECT * FROM menus WHERE id = $id");
+    $customer = mysqli_query($link, "SELECT * FROM user WHERE email = '$email'");
+
+    if (!$result || !$customer) {
+        die("Error in SQL query: " . mysqli_error($link));
+    }
+
+    $resultData = mysqli_fetch_assoc($result);
+    $cusData = mysqli_fetch_assoc($customer);
+    $menuname = $resultData['menuname'];
+    $price = $resultData['price'];
+    $cusname = $cusData['name'];
+    $cusemail = $cusData['email'];
+    $cusmobile = $cusData['mobile'];
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +71,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== TRUE) {
     <div class="image-container-1" style="background-image: url('../images/bg-hero.jpg');">
         <div class="image-back">
             <div class="image-text-1 center">
-                <h1 class="center topic">Free Delivery in Downtown</h1>
+                <h1 class="center" style="color:white;">Free Delivery in Downtown</h1>
                 <div class="flex">
                     <a href="" class="text-orange mx-2"><h3>Home </h3></a> /
                     <a href="" class="text-orange mx-2"><h3>Pages</h3></a> / 
@@ -58,6 +81,54 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== TRUE) {
         </div>
     </div>
     <!-- welcome image-end -->
+
+    <div class="message-container">
+        <div class="center-content">
+          <?php
+              // Include the database connection file
+            //   require_once("connect.php");
+
+            //   if (isset($_POST['submit'])) {
+            //     // Escape special characters in string for use in SQL statement	
+            //     $fname = mysqli_real_escape_string($conn, $_POST['fname']);
+            //     $lname = mysqli_real_escape_string($conn, $_POST['lname']);
+            //     $email = mysqli_real_escape_string($conn, $_POST['email']);
+            //     $subject = mysqli_real_escape_string($conn, $_POST['subject']);
+            //     $message = mysqli_real_escape_string($conn, $_POST['message']);
+                  
+            //     if (empty($fname) || empty($lname) || empty($email) || empty($subject) || empty($message)) {
+            //       echo "<div class='errormessage'>Fill all fields</div>";
+            //     } else { 
+            //       $result = mysqli_query($conn, "INSERT INTO contact (`fname`, `lname`, `email`, `subject`, `message`) VALUES ('$fname', '$lname', '$email', '$subject', '$message')");
+                  
+            //       echo "<div class='successmessage'>Data inserted successfully</div>";
+            //     }
+            //   }
+          ?>
+          <h2 class="topic">Place your delivery and make payment</h2>
+          <h5 class="topic mot">We love deliver your order to your door steps</h5>
+          <div class="text-orange mot between"><div>Meal Id: <?php echo $id ?></div>, <div>Menu Name: <?php echo $menuname ?></div>, <div>Price: <?php echo $price ?> (Per One)</div></div>
+          <form class="form" method="post" name="add">
+              <div class="input-group">
+                <label for="email">Customer Name</label>
+                <input type="text" name="fname" id="email" class="text-orange" value='<?php echo htmlspecialchars($cusname); ?>'>
+            </div>
+            <div class="input-group">
+                <label for="email">Mobile</label>
+                <input type="text" name="lname" id="email" class="text-orange" value='0<?php echo htmlspecialchars($cusmobile); ?>'>
+            </div>
+              <div class="input-group">
+                  <label for="email">Customer Email</label>
+                  <input type="email" name="email" id="email" class="text-orange" value='<?php echo htmlspecialchars($cusemail); ?>'>
+              </div>
+              <div class="input-group">
+                  <label for="email">Number of potions</label>
+                  <input type="number" name="subject" id="email" placeholder="Enter Number of potions required" >
+              </div>
+              <button type="submit" name="submit" class="submit-button">Order Now</button>
+          </form>
+        </div>
+    </div>
     
     <!-- footer section start -->
     <div class="navbar footer mt-2">
@@ -93,7 +164,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== TRUE) {
                 <h3 class="text-orange">Newsletter</h3>
                 <p>Get our new recepies to your door step</p>
                 <div class="nav-item">
-                    <input class="textbox" type="text" placeholder="Your email">
+                    <input class="textbox" type="text" placeholder="Your email" style="width:50%;">
                     <button type="button" class="btn btn-orange">SignUp</button>
                 </div>
             </div>

@@ -14,3 +14,108 @@
     justify-content: center;
     color: white;
 }
+.message-container{
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.center-content{
+    width: auto;
+    height: auto;
+    padding: 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.center{
+    text-align: center;
+}
+.flex{
+    display: flex;
+}
+.justify{
+    justify-content: space-between;
+}
+.distribute{
+    display: flex;
+    justify-content: space-between;
+}
+.form{
+    margin: 20px 10px 20px 10px;
+}
+input, textarea{
+    width: 600px;
+    height: auto;
+    padding: 10px;
+    border: solid 1px rgb(190, 190, 190);
+    border-radius: 4px;
+}
+.firstname{
+    margin-right: 20px;
+}
+.input-group{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0 15px 0;
+}
+textarea{
+    height: 100px;
+}
+.topic{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 7px;
+    color: rgb(26, 23, 61);
+}
+.mot{
+    margin: 5px 8px 5px 7px;
+}
+input:focus {
+    background-color: rgb(235, 235, 235);
+    border: none;
+}
+textarea:focus {
+    background-color: rgb(235, 235, 235);
+    border: none;
+}
+.submit-button{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    border: none;
+    background-color: rgb(231, 120, 16);
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.submit-button:hover{
+    background-color: rgb(179, 80, 0);
+    cursor: pointer;
+}
+.errormessage{
+    color: rgb(180, 31, 31);
+    background-color: rgb(245, 203, 203);
+    border-color: rgb(245, 203, 203);
+    width: 90%;
+    height: auto;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px;
+}
+.successmessage {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    width: 90%;
+    height: auto;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 5px;
+}
+.between{
+    display: flex;
+    justify-content: space-between;
+}
