@@ -26,7 +26,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-    <title> Stripe Checkout in PHP by codeat21.com</title>
+    <title>Check Out</title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="../../icons/restaurant.png" type="image/x-icon">
     <!-- Stylesheet file -->
@@ -75,7 +75,7 @@
                         </div>
                         <div class="input-group">
                             <label for="email">Total price</label>
-                            <input type="text" class="text-orange" value='Rs.<?php echo $total ?>'>
+                            <input type="text" class="text-orange" value='Rs.<?php echo $total ?>.00'>
                         </div>
                         <div id="buynow">
                             <button class="btn__default submit-button" id="payButton"> Pay Now</button>
