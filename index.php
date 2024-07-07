@@ -48,7 +48,7 @@
     </div>
     <!-- welcome image-end -->
 
-    <!-- Service Start -->
+    <!-- Service start -->
     <div class="container">
         <div>
             <h2 class="text-orange center">Our Services</h2>
@@ -243,7 +243,7 @@
 
     <!-- back to top button -->
     <button id="scrollToTopBtn" title="Go to top">UP</button>
-
+    <!--js connection here-->
     <script src="/scripts/script.js"></script>
 </body>
 </html>
