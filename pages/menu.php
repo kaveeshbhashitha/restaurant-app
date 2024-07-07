@@ -89,7 +89,7 @@
             </button>
         </div>
 
-        <div id="menu-content">
+        <div id="menu-content" class="center">
             <div id="breakfast" class="menu hidden">
                 <div class="card-list">
                 <?php
