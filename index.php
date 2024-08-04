@@ -4,10 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="icons/restaurant.png" type="image/x-icon">
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/cookie.css">
+    <script src="scripts/cookie.js" defer></script>
     <title>Welcome | ABC Restaurant</title>
 </head>
 <body>
+    <div class="wrapper">
+        <header>
+            <i class="bx bx-cookie"></i>
+            <h3>Protect your privacy</h3>
+        </header>
+
+        <div class="data">
+            <p>This website use cookies to help you have a superior and more relevant browsing experience on the website. <a href="https://www.cloudflare.com/en-gb/learning/privacy/what-are-cookies/"> Read more...</a></p>
+        </div>
+
+        <div class="buttons">
+            <button class="button" id="acceptBtn">Accept</button>
+            <button class="button" id="declineBtn">Decline</button>
+        </div>
+    </div>
     <!-- head section start -->
     <div class="header">
         <nav class="navbar navbar-layout">
@@ -38,7 +56,7 @@
                 <div>
                     <h1 class="text-large">Enjoy Our<br>Delicious Meal</h1>
                     <p class="sentence">We are the cookers provide most delicious meals in the city and we are popular for international culinary</p>
-                    <a href="pages/booking.html" class="btn btn-orange">Book A Table</a>
+                    <a href="pages/booking.php" class="btn btn-orange">Book A Table</a>
                 </div>
             </div>
             <div class="first-image">
@@ -244,6 +262,7 @@
     <!-- back to top button -->
     <button id="scrollToTopBtn" title="Go to top">UP</button>
     <!--js connection here-->
-    <script src="/scripts/script.js"></script>
+    <script src="scripts/script.js"></script>
+    
 </body>
 </html>
