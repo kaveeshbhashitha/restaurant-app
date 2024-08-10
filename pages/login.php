@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <div class="form-group submit-btn">
-          <input type="submit" name="submit" value="Sign Up">
+          <input type="submit" name="submit" value="Sign In">
         </div>
         <div class="mt-2" style="text-align:center;">
           Don't have an account<a href="./register.php" style="margin-left:5px;">Sign Up</a>
