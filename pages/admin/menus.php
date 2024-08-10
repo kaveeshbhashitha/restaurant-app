@@ -8,10 +8,22 @@ if (!$sql) {
     die("Error in SQL query: " . mysqli_error($link));
 }
 
-// Fetch all rows from the query result
 $menus = [];
 while ($row = mysqli_fetch_assoc($sql)) {
     $menus[] = $row;
+}
+
+if (isset($_GET['id'])) {
+    $id = intval($_GET['id']);
+
+    $sql = "DELETE FROM menus WHERE id = ?";
+    $stmt = $link->prepare($sql);
+    if ($stmt->execute([$id])) {
+        echo "<script>alert('Menu item deleted successfully.'); window.location.href='menus.php';</script>";
+    } else {
+        echo "<script>alert('Failed to delete menu item.'); window.location.href='menus.php';</script>";
+    }
+} else {
 }
 ?>
 <!DOCTYPE html>
@@ -55,8 +67,8 @@ while ($row = mysqli_fetch_assoc($sql)) {
             <td><?= htmlspecialchars($menu['mode']); ?></td>
             <td>Rs.<?= htmlspecialchars($menu['price']); ?></td>
             <td>
-                <button class="two-button edit">Edit</button>
-                <button class="two-button delete">Delete</button>
+                <a href="update.php?id=<?= htmlspecialchars($menu['id']); ?>" class="two-button edit">Edit</a>
+                <a href="menus.php?id=<?= htmlspecialchars($menu['id']); ?>" class="two-button delete" onclick="return confirm('Are you sure you want to delete this menu item?');">Delete</a>
             </td>
         </tr>
         <?php endforeach; ?>

@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <select name="mode" id="mode">
                     <option value="">Select Mode</option>
                     <option value="lunch">Lunch</option>
-                    <option value="breakfast">Dinner</option>
+                    <option value="breakfast">Breakfast</option>
                     <option value="dinner">Dinner</option>
                 </select>
             </div>
