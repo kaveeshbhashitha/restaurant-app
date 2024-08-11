@@ -140,7 +140,7 @@
                 <h5 class="text-orange">About Us</h5>
                 <h1 class="">Welcome to <i class="fa fa-utensils text-primary me-2"></i> Restoran</h1>
                 <p class="long">Our vision is to provide best things for our customers and make food quality as much as possible to maintaing the quality of our standards</p><br>
-                <p class="long">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                <p class="long">Our vision is to provide best things for our customers and make food quality as much as possible to maintaing the quality of our standards</p>
                 <div class="flex">
                     <div class="">
                         <div class="flex">
