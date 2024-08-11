@@ -2,6 +2,11 @@
 // Database connection
 require '../config.php';
 
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === TRUE) {
+    echo "<script>window.location.href='./login.php';</script>";
+    exit;
+}
+
 $sql = mysqli_query($link, "SELECT * FROM menus");
 
 if (!$sql) {
@@ -42,6 +47,7 @@ if (isset($_GET['id'])) {
             <h2>Available Menus</h2>
         </div>
         <div class="buttonbox">
+            <a class="two-button add" href="./home.php">Back</a>
             <a class="two-button add" href="./add.php">Add New</a>
             <a class="two-button log" href="./logout.php">Logout</a>
         </div>

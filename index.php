@@ -77,7 +77,7 @@
                 <div class="box-content">
                     <img src="icons/catering.gif" alt="" class="service-icons">
                     <h3>Master Chefs</h3>
-                    <h5 class="long">Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</h5>
+                    <h5 class="long">We are fullfilled with most talented masters in the country</h5>
                 </div>
             </div>
             <div class="box margin">
@@ -85,7 +85,7 @@
                     <div class="box-content">
                         <img src="icons/healthy-food.gif" alt="" class="service-icons">
                         <h3>Quality Food</h3>
-                        <h5 class="long">Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</h5>
+                        <h5 class="long">We always think about you. We provide best things for your</h5>
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@
                     <div class="box-content">
                         <img src="icons/online-shop.gif" alt="" class="service-icons">
                         <h3>Online Order</h3>
-                        <h5 class="long">Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</h5>
+                        <h5 class="long">We deliver your meals into your doore steps to feel you free</h5>
                     </div>
                 </div>
             </div>
@@ -103,7 +103,7 @@
                     <div class="box-content">
                         <img src="icons/24-7.gif" alt="" class="service-icons">
                         <h3>24/7 Service</h3>
-                        <h5 class="long">Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</h5>
+                        <h5 class="long">We are working everyday every time for your happiness and comfortability</h5>
                     </div>
                 </div>
             </div>
@@ -139,7 +139,7 @@
             <div class="about">
                 <h5 class="text-orange">About Us</h5>
                 <h1 class="">Welcome to <i class="fa fa-utensils text-primary me-2"></i> Restoran</h1>
-                <p class="long">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.</p><br>
+                <p class="long">Our vision is to provide best things for our customers and make food quality as much as possible to maintaing the quality of our standards</p><br>
                 <p class="long">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
                 <div class="flex">
                     <div class="">

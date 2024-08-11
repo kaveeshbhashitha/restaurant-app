@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["email"] = $user_login;
             $_SESSION["loggedin"] = TRUE;
 
-            echo "<script>window.location.href='./menus.php';</script>";
+            echo "<script>window.location.href='./home.php';</script>";
             exit;
         } else {
             $login_err = "Invalid email or password.";

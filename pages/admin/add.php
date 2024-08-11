@@ -1,6 +1,11 @@
 <?php
 require '../config.php';
 
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === TRUE) {
+    echo "<script>window.location.href='./login.php';</script>";
+    exit;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $menuname = $_POST['menuname'];
     $category = $_POST['category'];
