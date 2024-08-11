@@ -26,16 +26,18 @@
                 <form method="GET">
                     <input type="hidden" name="month" value="<?php echo date('m', strtotime('-1 month', strtotime($currentMonth))); ?>">
                     <input type="hidden" name="year" value="<?php echo date('Y', strtotime('-1 month', strtotime($currentMonth))); ?>">
-                    <button type="submit">Previous Month</button>
+                    <button type="submit">Previous</button>
                 </form>
                 <div class="gap"></div>
                 <form method="GET">
                     <input type="hidden" name="month" value="<?php echo date('m', strtotime('+1 month', strtotime($currentMonth))); ?>">
                     <input type="hidden" name="year" value="<?php echo date('Y', strtotime('+1 month', strtotime($currentMonth))); ?>">
-                    <button type="submit">Next Month</button>
+                    <button type="submit">Next</button>
                 </form>
                 <div class="gap"></div>
                 <button type="submit" onclick="window.location.href='menus.php'" style="background-color: rgb(40, 40, 40);">Menus</button>
+                <div class="gap"></div>
+                <button type="submit" onclick="window.location.href='logout.php'" style="background-color: #d70404;">Logout</button>
             </div>
             <?php
                 $currentMonth = isset($_GET['month']) && isset($_GET['year']) 
