@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2024 at 05:46 PM
+-- Generation Time: Aug 11, 2024 at 03:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -55,7 +55,8 @@ INSERT INTO `booking` (`id`, `tableid`, `seats`, `tcondition`, `name`, `email`, 
 (30, 3, 4, 'Closed to window', '', 'bkaveesh222@gmail.com', '0713114215', '2024-08-15', '13:20', '13:20', 4, 'sewe', 'efffe'),
 (31, 25, 3, 'Away from kitchen', '', 'kaveesh-ps20021@stu.kln.ac.lk', '0713114215', '2024-08-04', '07:30', '20:30', 3, 'Bhashitha', 'Kaveesh'),
 (32, 1, 2, 'Smoking Allowed', '', 'supunsb21@gmail.com', '0713114215', '2024-08-10', '19:55', '21:53', 2, 'Supun', 'Bandara'),
-(33, 3, 4, 'Closed to window', '', 'kaveeshbhashitha@gmail.com', '0713114215', '2024-08-11', '20:00', '21:00', 4, 'Bhashitha', 'Kaveesh');
+(33, 3, 4, 'Closed to window', '', 'kaveeshbhashitha@gmail.com', '0713114215', '2024-08-11', '20:00', '21:00', 4, 'Bhashitha', 'Kaveesh'),
+(34, 23, 2, 'Away from kitchen', '', 'kaveeshbhashitha@gmail.com', '0713114215', '2024-08-22', '14:59', '20:04', 2, 'Bhashitha', 'Kaveesh');
 
 -- --------------------------------------------------------
 
@@ -99,7 +100,8 @@ INSERT INTO `foodorder` (`id`, `menuid`, `menuname`, `price`, `name`, `email`, `
 (16, 6, 'Butter Chicken', '1000.00', 'Kaveesh MAB', 'bkaveesh222@gmail.com', '234', '713114215', 2, 'http://localhost/restaurant-app/images/food5.jpeg'),
 (17, 6, 'Butter Chicken', '1000.00', 'Kaveesh MAB', 'bkaveesh222@gmail.com', '234', '713114215', 2, 'http://localhost/restaurant-app/images/food5.jpeg'),
 (18, 6, 'Butter Chicken', '1000.00', 'Damian Fernando', 'bkaveesh222@gmail.com', '25/1, Negambo Rd. Ja ela', '713114215', 1, 'http://localhost/restaurant-app/images/food5.jpeg'),
-(19, 31, 'Chinees Dumplings', '1200.00', 'Pasindu Pramuditha', 'kaveeshbhashitha@gmail.com', '25/1, Negambo Rd. Ja ela', '713114215', 3, 'http://localhost/restaurant-app/images/dumpling.jpg');
+(19, 31, 'Chinees Dumplings', '1200.00', 'Pasindu Pramuditha', 'kaveeshbhashitha@gmail.com', '25/1, Negambo Rd. Ja ela', '713114215', 3, 'http://localhost/restaurant-app/images/dumpling.jpg'),
+(20, 33, 'Mix Grill with Vegetables', '3500.00', 'Pasindu Pramuditha', 'kaveeshbhashitha@gmail.com', '25/1, Negambo Rd. Ja ela', '713114215', 4, 'http://localhost/restaurant-app/images/mixgrill.jpg');
 
 -- --------------------------------------------------------
 
@@ -241,7 +243,7 @@ INSERT INTO `tables` (`id`, `allow`, `seats`, `status`) VALUES
 (20, 'Away from kitchen', 6, 'notreserved'),
 (21, 'Away from kitchen', 4, 'notreserved'),
 (22, 'Away from kitchen', 5, 'notreserved'),
-(23, 'Away from kitchen', 2, 'notreserved'),
+(23, 'Away from kitchen', 2, 'reserved'),
 (25, 'Away from kitchen', 3, 'notreserved'),
 (26, 'Away from kitchen ', 0, 'notresearved'),
 (27, 'Away from kitchen ', 2, 'notresearved'),
@@ -325,13 +327,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `foodorder`
 --
 ALTER TABLE `foodorder`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `menus`
